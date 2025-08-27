@@ -12,6 +12,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
+    "@types/axios": "^0.9.36",
     "@types/cors": "^2.8.19",
     "@types/pg": "^8.15.4",
     "@types/xml2js": "^0.4.14",
