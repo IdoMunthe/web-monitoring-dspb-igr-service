@@ -1,18 +1,8 @@
-import { db } from "../db";
-import {
-  getTokoDefaultQuery,
-} from "../queries/tokoList.query";
+import { getDb } from "../db";
+import { getTokoDefaultQuery } from "../queries/tokoList.query";
 
-const getKodeIGR = async () => {
-  const res = await db.query("SELECT prs_kodeigr FROM TBMASTER_PERUSAHAAN");
-  const kodeIGR = res.rows[0].prs_kodeigr;
-  console.log(kodeIGR);
-  return kodeIGR;
-};
-
-export const getTokoListService = async () => {
-  const kodeIGR = await getKodeIGR();
-  const sql = getTokoDefaultQuery();
-  const result = await db.query(sql, [kodeIGR]);
+export const getTokoListService = async (kodeCabang: string) => {
+  const db = await getDb(kodeCabang)
+  const result = await db.query(getTokoDefaultQuery, [kodeCabang]);
   return result.rows;
 };
