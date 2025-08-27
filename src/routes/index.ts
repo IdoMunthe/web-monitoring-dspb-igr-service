@@ -1,11 +1,11 @@
 import { Router } from "express";
-// import { getLogNpb } from "../controllers/logNpb.controller";
+import { getLogNpb } from "../controllers/logNpb.controller";
 import { getTokoListController } from "../controllers/tokoList.controller";
 import axios from "axios";
 
 const router: Router = Router();
 
-// router.get("/log-npb", getLogNpb);
+router.get("/log-npb", getLogNpb);
 router.get("/toko-list", getTokoListController);
 
 router.get("/branch-list", async (req, res) => {
