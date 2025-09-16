@@ -9,10 +9,10 @@ export const getLogNpbByDate = async (
   kodeCabang: string
 ) => {
   let query = `
-    SELECT npb_tgl_proses AS tgl_proses,
+    SELECT to_char(npb_tgl_proses, 'YYYY-MM-DD') AS tgl_proses,
     npb_kodetoko AS kode_toko,
     npb_nopb AS no_pb,
-    npb_tglpb AS tgl_pb,
+    to_char(npb_tglpb, 'YYYY-MM-DD') AS tgl_pb,
     npb_nodspb AS no_dspb,
     npb_file AS filename,
     npb_jenis AS jenis_npb,
@@ -31,7 +31,7 @@ export const getLogNpbByDate = async (
   }
 
   if (statusKirim && statusKirim !== "All") {
-    query += ` AND npb_response LIKE $${idx++}`; // use LIKE for partial match
+    query += ` AND upper(npb_response) LIKE $${idx++}`; // use LIKE for partial match
     params.push(`%${statusKirim}%`); // add % for substring search
   }
 

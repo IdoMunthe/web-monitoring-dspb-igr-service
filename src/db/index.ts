@@ -6,16 +6,16 @@ dotenv.config();
 export async function getURL(cabang: string) {
   const connection = await getConnectionDetails(cabang);
   const url = `postgres://${connection?.ORA_USER}:${connection?.ORA_PWD}@${connection?.ORA_IP}:5432/${connection?.ORA_SERVICENAME}`;
-  console.log(url)
+  console.log(url);
+  console.log("========================================");
   return url;
 }
 
 export async function getDb(cabang: string) {
   const url = await getURL(cabang);
-  const db = new Pool({connectionString: url})
-  return db
+  const db = new Pool({ connectionString: url });
+  return db;
 }
-
 
 // export const db = new Pool({
 //   user: process.env.DB_USER,
