@@ -17,10 +17,46 @@ export async function getDb(cabang: string) {
   return db;
 }
 
-// export const db = new Pool({
-//   user: process.env.DB_USER,
-//   host: process.env.DB_HOST,
-//   database: process.env.DB_NAME,
-//   password: process.env.DB_PASSWORD,
-//   port: Number(process.env.DB_PORT),
+// export const igrmktho = new Pool({
+//   user: 'igrmktho',
+//   host: '172.20.28.24',
+//   database: 'igrmktho',
+//   password: 'igrmktho',
+//   port: 1521,
 // });
+
+import oracledb from "oracledb";
+oracledb.initOracleClient({
+  libDir: "D:\\Programs\\instant-client\\instantclient_23_9",
+});
+
+let pool: oracledb.Pool;
+
+export async function initPool() {
+  if (!pool) {
+    pool = await oracledb.createPool({
+      user: "igrmktho",
+      password: "igrmktho",
+      connectString: "172.20.28.24:1521/igrmktho",
+      poolMin: 1,
+      poolMax: 10,
+      poolIncrement: 1,
+    });
+    console.log("Oracle pool created");
+  }
+}
+
+export async function query(sql: string, params: any[] = []) {
+  let connection;
+  try {
+    connection = await pool.getConnection();
+    const result = await connection.execute(sql, params, {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    });
+    return result.rows;
+  } finally {
+    if (connection) {
+      await connection.close();
+    }
+  }
+}
