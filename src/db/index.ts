@@ -27,7 +27,7 @@ export async function getDb(cabang: string) {
 
 import oracledb from "oracledb";
 oracledb.initOracleClient({
-  libDir: "D:\\Programs\\instant-client\\instantclient_23_9",
+  libDir: "D:\\Private Folder\\ido\\instant-client\\instantclient_23_9",
 });
 
 let pool: oracledb.Pool;

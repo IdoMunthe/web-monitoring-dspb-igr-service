@@ -1,1 +1,1 @@
-export const getTokoDefaultQuery = `select TKO_KODEOMI from  tbmaster_tokoigr where TKO_KODEIGR = $1`;
+export const getTokoDefaultQuery = `select TKO_KODEOMI from  tbmaster_tokoigr where tko_kodesbu = 'I' and TKO_KODEIGR = $1`;
