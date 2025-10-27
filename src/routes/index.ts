@@ -3,7 +3,7 @@ import { getLogNpb } from "../controllers/logNpb.controller";
 import { getTokoListController } from "../controllers/tokoList.controller";
 import axios from "axios";
 import { getCabangConnectionController } from "../controllers/cabangConnection.controller";
-import { query } from "../db";
+import { igrmktho} from "../db";
 import { loginController } from "../controllers/login.controller";
 import { authMiddleware } from "../middleware/auth.middleware";
 
@@ -27,7 +27,7 @@ router.get("/branch-list", async (req, res) => {
 
 router.get("/test-igrmktho", async (req, res) => {
   try {
-    const rows = await query("SELECT SYSDATE FROM dual"); // Oracle’s test query
+    const rows = await igrmktho.query("SELECT SYSDATE FROM dual"); // Oracle’s test query
     res.json(rows);
   } catch (err) {
     console.error(err);

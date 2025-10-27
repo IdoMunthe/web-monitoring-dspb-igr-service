@@ -17,46 +17,46 @@ export async function getDb(cabang: string) {
   return db;
 }
 
-// export const igrmktho = new Pool({
-//   user: 'igrmktho',
-//   host: '172.20.28.24',
-//   database: 'igrmktho',
-//   password: 'igrmktho',
-//   port: 1521,
-// });
-
-import oracledb from "oracledb";
-oracledb.initOracleClient({
-  libDir: "D:\\Private Folder\\ido\\instant-client\\instantclient_23_9",
+export const igrmktho = new Pool({
+  user: 'igrmktho',
+  host: '172.20.28.24',
+  database: 'igrmktho',
+  password: 'PGummymkth0!',
+  port: 1521,
 });
 
-let pool: oracledb.Pool;
+// import oracledb from "oracledb";
+// oracledb.initOracleClient({
+//   libDir: "D:\\Private Folder\\ido\\instant-client\\instantclient_23_9",
+// });
 
-export async function initPool() {
-  if (!pool) {
-    pool = await oracledb.createPool({
-      user: "igrmktho",
-      password: "igrmktho",
-      connectString: "172.20.28.24:1521/igrmktho",
-      poolMin: 1,
-      poolMax: 10,
-      poolIncrement: 1,
-    });
-    console.log("Oracle pool created");
-  }
-}
+// let pool: oracledb.Pool;
 
-export async function query(sql: string, params: any[] = []) {
-  let connection;
-  try {
-    connection = await pool.getConnection();
-    const result = await connection.execute(sql, params, {
-      outFormat: oracledb.OUT_FORMAT_OBJECT,
-    });
-    return result.rows;
-  } finally {
-    if (connection) {
-      await connection.close();
-    }
-  }
-}
+// export async function initPool() {
+//   if (!pool) {
+//     pool = await oracledb.createPool({
+//       user: "igrmktho",
+//       password: "igrmktho",
+//       connectString: "172.20.28.24:1521/igrmktho",
+//       poolMin: 1,
+//       poolMax: 10,
+//       poolIncrement: 1,
+//     });
+//     console.log("Oracle pool created");
+//   }
+// }
+
+// export async function query(sql: string, params: any[] = []) {
+//   let connection;
+//   try {
+//     connection = await pool.getConnection();
+//     const result = await connection.execute(sql, params, {
+//       outFormat: oracledb.OUT_FORMAT_OBJECT,
+//     });
+//     return result.rows;
+//   } finally {
+//     if (connection) {
+//       await connection.close();
+//     }
+//   }
+// }
